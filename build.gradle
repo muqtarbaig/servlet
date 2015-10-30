@@ -1,0 +1,71 @@
+apply plugin : 'java'
+apply plugin : 'war'
+apply plugin : 'eclipse-wtp'
+apply plugin : 'eclipse'
+apply plugin: 'com.bmuschko.tomcat'
+
+buildscript {
+	repositories {
+		//jcenter()
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.2'
+	}
+}
+
+
+repositories{
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies{
+	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+	compile 'org.slf4j:slf4j-simple:1.7.12'
+	compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+	compile "com.fasterxml.jackson.core:jackson-databind:2.4.+"
+	compile 'jstl:jstl:1.2'
+
+	
+	
+	def tomcatVersion = '7.0.59'
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+		   "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+		   "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+tomcat {
+	httpPort = 9090
+	httpsPort = 9091
+	enableSSL = true
+	contextPath = 'sampleserv'
+	}
+
+task createDirs << {
+	
+	sourceSets.all { set ->
+		set.allSource.srcDirs.each{
+			it.mkdirs()
+		}
+	}
+	
+}
+
+
+
+/*task copyWar(dependsOn : war,type: Copy){
+	from 'build/libs/'
+	into 'D:/tools/apache-tomcat-7.0.59/webapps'
+}
+
+task deployWar(dependsOn : copyWar, type: Exec)  {
+	workingDir 'D:/tools/apache-tomcat-7.0.59/bin'
+	//def path = "$buildDir/libs/servlet.war";
+	//commandLine "cmd", "/c", "copy $buildDir/libs/servlet.war ..\\webapps"
+	commandLine 'cmd', '/c', "startup.bat"
+}
+deployWar <<{
+	println "Deployed "
+}*/
