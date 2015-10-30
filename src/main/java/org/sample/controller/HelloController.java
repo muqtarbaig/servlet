@@ -14,6 +14,7 @@ public class HelloController  {
 	@RequestMapping(value = "/hello.htm")
 	public String hello(){
 		LOGGER.info("In Hello Controller handle Request");
+		LOGGER.info("Returing hello jsp");
 		return "hello";
 	}
 
