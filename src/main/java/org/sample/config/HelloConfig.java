@@ -9,6 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
+@ComponentScan(basePackages = "org.sample")
 public class HelloConfig {
 
 	 @Bean
@@ -19,4 +20,6 @@ public class HelloConfig {
 		 return irvr;
 	    }
 	 
+	 
+
 }
