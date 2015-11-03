@@ -1,5 +1,7 @@
 package org.sample.config;
 
+import org.sample.service.EmailMessage;
+import org.sample.service.Message;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "org.sample")
-public class HelloConfig {
+public class RootConfig {
 
 	 @Bean
 	    public ViewResolver viewResolver() {
@@ -20,6 +22,9 @@ public class HelloConfig {
 		 return irvr;
 	    }
 	 
-	 
+	 @Bean
+	 public Message message(){
+		 return new EmailMessage();
+	 }
 
 }

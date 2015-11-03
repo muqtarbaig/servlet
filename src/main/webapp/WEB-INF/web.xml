@@ -18,7 +18,7 @@
 		<init-param>
 			<!-- <param-name>contextConfigLocation</param-name> <param-value>/WEB-INF/spring-mvc.xml</param-value> -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>org.sample.config.HelloConfig</param-value>
+			<param-value>org.sample.config.RootConfig</param-value>
 		</init-param>
 
 		<init-param>
