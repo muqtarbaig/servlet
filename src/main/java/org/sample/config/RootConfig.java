@@ -1,7 +1,10 @@
 package org.sample.config;
 
+import org.sample.service.AgeValidator;
+import org.sample.service.AgeValidatorImpl;
 import org.sample.service.EmailMessage;
 import org.sample.service.Message;
+import org.sample.service.VeteranValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,4 +30,10 @@ public class RootConfig {
 		 return new EmailMessage();
 	 }
 
+	 @Bean
+	 public AgeValidator validator(){
+		 return new AgeValidatorImpl();
+	 }
+	 
+	
 }
