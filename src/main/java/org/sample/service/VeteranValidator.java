@@ -8,7 +8,7 @@ public class VeteranValidator implements AgeValidator {
 	@Override
 	public boolean validate(int age) {
 
-		if(age > 50) return true;
+		if(age >= 50) return true;
 		
 		return false;
 	}
