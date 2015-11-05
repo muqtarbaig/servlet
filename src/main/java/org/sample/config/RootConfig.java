@@ -4,10 +4,12 @@ import org.sample.service.AgeValidator;
 import org.sample.service.AgeValidatorImpl;
 import org.sample.service.EmailMessage;
 import org.sample.service.Message;
-import org.sample.service.VeteranValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "org.sample")
+@EnableScheduling
 public class RootConfig {
 
 	 @Bean
@@ -35,5 +38,9 @@ public class RootConfig {
 		 return new AgeValidatorImpl();
 	 }
 	 
+	 @Bean
+	 public TaskScheduler cts(){
+		 return new ConcurrentTaskScheduler();
+	 }
 	
 }
