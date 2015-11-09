@@ -1,3 +1,5 @@
+import java.lang.invoke.LambdaForm.Compiled;
+
 apply plugin : 'java'
 apply plugin : 'war'
 apply plugin : 'eclipse-wtp'
@@ -26,6 +28,8 @@ dependencies{
 	compile 'org.slf4j:slf4j-simple:1.7.12'
 	compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
 	compile "com.fasterxml.jackson.core:jackson-databind:2.4.+"
+	compile "org.springframework.security:spring-security-web:+"
+	compile "org.springframework.security:spring-security-config:+"
 	compile 'jstl:jstl:1.2'
 
 	
