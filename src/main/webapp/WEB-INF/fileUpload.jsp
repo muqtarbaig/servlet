@@ -9,7 +9,8 @@
   
     <p>Select files to upload..</p>
   
-         <input name="myFile" type="file" />
+         <input name="files[0]" type="file" />
+         <form:errors path="files" cssstyle="color: red;"></form:errors>
     <br/><input type="submit" value="Upload" />
 </form:form>
 </body>

@@ -3,6 +3,7 @@ package org.sample.config;
 import org.sample.service.AgeValidator;
 import org.sample.service.AgeValidatorImpl;
 import org.sample.service.EmailMessage;
+import org.sample.service.FileValidator;
 import org.sample.service.Message;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -48,5 +51,6 @@ public class RootConfig {
 	 public CommonsMultipartResolver multipartResolver(){
 		 return new CommonsMultipartResolver();
 	 }
+	 
 	 
 }
