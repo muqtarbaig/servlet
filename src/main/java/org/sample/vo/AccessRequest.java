@@ -1,10 +1,13 @@
 package org.sample.vo;
 
+import java.util.List;
+
 public class AccessRequest {
 
 	private String name;
 	private int age;
-	private String country;
+	private String state;
+	private List<Channel> reqChannels;
 	public String getName() {
 		return name;
 	}

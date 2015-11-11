@@ -16,8 +16,12 @@ public class AccessController {
 	@Autowired
 	private AccessValidator accessValidator;
 	
+	private static final Logger Logger = LoggerFactory.getLogger(AccessController.class);
+	
 	@RequestMapping(value="/access",method = RequestMethod.POST)
 	public String authorizeAccess(@RequestBody AccessRequest request){
+		
+		Logger.info("Access Request :: "+request);
 		if(accessValidator.validateAccess(request))
 			return "Young";
 		if(accessValidator.validateVetern(request))
