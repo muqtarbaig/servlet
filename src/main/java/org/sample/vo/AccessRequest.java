@@ -20,10 +20,25 @@ public class AccessRequest {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getCountry() {
-		return country;
+	public String getState() {
+		return state;
 	}
-	public void setCountry(String country) {
-		this.country = country;
+	public void setState(String state) {
+		this.state = state;
+	}
+	public List<Channel> getRequestChannels() {
+		return reqChannels;
+	}
+	public void setRequChannels(List<Channel> setChannels) {
+		this.reqChannels = setChannels;
+	}
+	
+	@Override
+	public String toString() {
+		
+		String request = "Name: " +this.name + "State: "+this.state + "age: "+this.age 
+						+ "Channels: "+this.reqChannels;
+		
+		return request;
 	}
 }
