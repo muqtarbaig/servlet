@@ -1,4 +1,4 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -16,10 +16,10 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
+	</bean> -->
  
 <!-- 	<mvc:resources mapping="/resources/**" location="/resources/" /> -->
 	 
-	<mvc:annotation-driven />
+<!-- 	<mvc:annotation-driven />
  
-</beans>
+</beans> -->

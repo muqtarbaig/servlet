@@ -1,0 +1,10 @@
+> @initbinder annotation should have method name initBinder only 
+
+> @Component on class doesn't require bean declaration in configuration for autowiring
+
+> @Component on interface requires bean decleartion for autowiring
+
+> @ModelAttribute for upload jsp/html form should have array type declaration of children in form 
+	of type marked with @ModelAttribute
+	
+> 
