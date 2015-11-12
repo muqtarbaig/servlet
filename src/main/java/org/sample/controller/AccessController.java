@@ -1,7 +1,13 @@
 package org.sample.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sample.service.AccessValidator;
 import org.sample.vo.AccessRequest;
+import org.sample.vo.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +22,12 @@ public class AccessController {
 	@Autowired
 	private AccessValidator accessValidator;
 	
+	private static final Logger Logger = LoggerFactory.getLogger(AccessController.class);
+	
 	@RequestMapping(value="/access",method = RequestMethod.POST)
 	public String authorizeAccess(@RequestBody AccessRequest request){
+		
+		Logger.info("Access Request :: "+request);
 		if(accessValidator.validateAccess(request))
 			return "Young";
 		if(accessValidator.validateVetern(request))
@@ -30,8 +40,21 @@ public class AccessController {
 	public ResponseEntity<AccessRequest> getSample(){
 		AccessRequest req = new AccessRequest();
 		req.setAge(25);
-		req.setCountry("Dubai");
+		req.setState("TS");
 		req.setName("Muqtar");
+		
+		List<Channel> clist = new ArrayList<Channel>();
+		Channel c1 = new Channel();
+		c1.setChannelName("BBC");
+		c1.setDflag(false);
+		Channel c2 = new Channel();
+		c2.setChannelName("QTV");
+		c2.setDflag(true);
+		clist.add(c2);
+		
+		clist.add(c1);
+		
+		req.setRequChannels(clist);
 		
 		return new ResponseEntity<AccessRequest>(req,HttpStatus.OK);
 		
