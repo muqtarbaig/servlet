@@ -3,6 +3,7 @@ package org.sample.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sample.exception.MyException;
 import org.sample.service.AccessValidator;
 import org.sample.vo.AccessRequest;
 import org.sample.vo.Channel;
@@ -28,6 +29,11 @@ public class AccessController {
 	public String authorizeAccess(@RequestBody AccessRequest request){
 		
 		Logger.info("Access Request :: "+request);
+		
+		if(request.getAge() == 99){
+			throw new MyException("Access request age ", "Age is 99");
+		}
+		
 		if(accessValidator.validateAccess(request))
 			return "Young";
 		if(accessValidator.validateVetern(request))
@@ -54,7 +60,7 @@ public class AccessController {
 		
 		clist.add(c1);
 		
-		req.setRequChannels(clist);
+		req.setReqChannels(clist);
 		
 		return new ResponseEntity<AccessRequest>(req,HttpStatus.OK);
 		

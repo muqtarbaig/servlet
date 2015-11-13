@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -43,8 +44,8 @@ public class RootConfig {
 	 }
 	 
 	 @Bean
-	 public TaskScheduler cts(){
-		 return new ConcurrentTaskScheduler();
+	 public ThreadPoolTaskScheduler cts(){
+		 return new ThreadPoolTaskScheduler();
 	 }
 	
 	 @Bean

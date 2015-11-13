@@ -26,18 +26,18 @@ public class AccessRequest {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public List<Channel> getRequestChannels() {
+	public List<Channel> getReqChannels() {
 		return reqChannels;
 	}
-	public void setRequChannels(List<Channel> setChannels) {
+	public void setReqChannels(List<Channel> setChannels) {
 		this.reqChannels = setChannels;
 	}
 	
 	@Override
 	public String toString() {
 		
-		String request = "Name: " +this.name + "State: "+this.state + "age: "+this.age 
-						+ "Channels: "+this.reqChannels;
+		String request = "Name: " +this.name + " State: "+this.state + " age: "+this.age 
+						+ " Channels: "+this.reqChannels;
 		
 		return request;
 	}
