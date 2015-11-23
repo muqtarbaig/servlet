@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-    <!-- <Properties>
-        <Property name="log-path">${sys:catalina.home}/logs/pgauth</Property>
-    </Properties> -->
+    <Properties>
+        <Property name="log-path">D:\project\servlet\src\main\webapp\config\logs</Property>
+    </Properties> 
 
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
@@ -15,18 +15,37 @@
             </PatternLayout>
             <TimeBasedTriggeringPolicy />
         </RollingFile> -->
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/access_request.log" filePattern= "${log-path}/access_request_%d{yyyy-MM-dd}_%i.log">
+        <PatternLayout>
+                <Pattern>%m</Pattern>
+                
+            </PatternLayout>
+          <!--   <Policies>
+            <SizeBasedTriggeringPolicy size="1 KB" />
+            </Policies>
+           --> 
+           
+           <Policies>
+        <OnStartupTriggeringPolicy />
+        <TimeBasedTriggeringPolicy />
+    </Policies>
+            
+        </RollingFile>
+        
     </Appenders>
 
     <Loggers>
         <Logger name="org.springframework" level="ERROR"/>
        
         <Logger name="org.apache.commons" level="ERROR"/>
-        <Logger name="org.sample" level="ERROR" />
+        <Logger name="org.sample" level="DEBUG" >
+       		 <appender-ref ref="AuthEventAppender"/> 
+        </Logger>
         <Logger name="com.couchbase.client" level="ERROR" />
         <Logger name="org.apache.http" level="ERROR" />
         
         <AsyncRoot level="info" includeLocation="true">
-          <!--   <AppenderRef ref="RollingFileAppender"/> -->
+            <!-- <AppenderRef ref="AuthEventAppender"/>  -->
             <AppenderRef ref="ConsoleAppender"/>
         </AsyncRoot>
 

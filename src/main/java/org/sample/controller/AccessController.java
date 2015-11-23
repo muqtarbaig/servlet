@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.sample.exception.MyException;
 import org.sample.service.AccessValidator;
+import org.sample.service.EventLogService;
 import org.sample.vo.AccessRequest;
 import org.sample.vo.Channel;
 import org.slf4j.Logger;
@@ -23,7 +24,11 @@ public class AccessController {
 	@Autowired
 	private AccessValidator accessValidator;
 	
+	//@Autowired
+	private EventLogService eventLogger;
+	
 	private static final Logger Logger = LoggerFactory.getLogger(AccessController.class);
+	
 	
 	@RequestMapping(value="/access",method = RequestMethod.POST)
 	public String authorizeAccess(@RequestBody AccessRequest request){
@@ -33,6 +38,10 @@ public class AccessController {
 		if(request.getAge() == 99){
 			throw new MyException("Access request age ", "Age is 99");
 		}
+		
+		
+		Logger.info("Log the request ");
+		//eventLogger.logEvent(request);
 		
 		if(accessValidator.validateAccess(request))
 			return "Young";
@@ -61,6 +70,7 @@ public class AccessController {
 		clist.add(c1);
 		
 		req.setReqChannels(clist);
+
 		
 		return new ResponseEntity<AccessRequest>(req,HttpStatus.OK);
 		

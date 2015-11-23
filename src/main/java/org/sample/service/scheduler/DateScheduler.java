@@ -32,6 +32,8 @@ public class DateScheduler implements SchedulingConfigurer{
 				
 				String date = new Date().toString();
 				LOGGER.info("Date is "+date);
+				LOGGER.info("This text would increase the size of the file significantly \n and that"
+						+ " is what we need to as well !! ");
 				if(date.contains(":01")){
 					throw new MyException("Date invalid error", "This is not the right time ??");
 				}
