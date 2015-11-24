@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 public class DateScheduler implements SchedulingConfigurer{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DateScheduler.class); 
+	private static final Logger fileLogger = LoggerFactory.getLogger("EventLogger");
+	
 	@Autowired
 	private ThreadPoolTaskScheduler cts ;
 	
@@ -32,8 +34,11 @@ public class DateScheduler implements SchedulingConfigurer{
 				
 				String date = new Date().toString();
 				LOGGER.info("Date is "+date);
-				LOGGER.info("This text would increase the size of the file significantly \n and that"
-						+ " is what we need to as well !! ");
+				fileLogger.info("LogValue 1 :: This text would increase the size of the file significantly and that"
+						+ " is what we need to as well !!$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$$$$$$$$$@@@@@@@@@@@@@");
+				
+				fileLogger.info("Log value 2 ###########################################################"
+						+ " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ END");
 				if(date.contains(":01")){
 					throw new MyException("Date invalid error", "This is not the right time ??");
 				}

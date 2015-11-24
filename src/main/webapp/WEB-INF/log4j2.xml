@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration >
     <Properties>
-        <Property name="log-path">D:\project\servlet\src\main\webapp\config\logs</Property>
+        <Property name="log-path">D:/project/servlet/src/main/webapp/config/logs</Property>
+        <property name="host-name">${hostName}</property>
     </Properties> 
 
     <Appenders>
@@ -9,28 +10,29 @@
             <PatternLayout pattern="%d{ABSOLUTE} [%t] %-5p %c{1} - %m%n"/>
         </Console>
  
-       <!--  <RollingFile name="RollingFileAppender" fileName="${log-path}/pgauth.log" filePattern="${log-path}/pgauth.log.%d{MM-dd-yyyy}">
-            <PatternLayout>
-                <Pattern>%d{HH:mm:ss,SSS} %C{1} %-5p [%t] - %m%n</Pattern>
-            </PatternLayout>
-            <TimeBasedTriggeringPolicy />
-        </RollingFile> -->
-        <RollingFile name="AuthEventAppender" fileName="${log-path}/access_request.log" filePattern= "${log-path}/access_request_%d{yyyy-MM-dd}_%i.log">
-        <PatternLayout>
-                <Pattern>%m</Pattern>
-                
-            </PatternLayout>
-          <!--   <Policies>
-            <SizeBasedTriggeringPolicy size="1 KB" />
+        <!-- yymmddhh MM-dd-yyyy-HH-mm -->
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/auth_request.log" filePattern="${log-path}/${host-name}~table_name~.%d{yyMMddHHmmss}">
+        	<PatternLayout>
+                <Pattern>%m:;:</Pattern>
+        	</PatternLayout>
+            <Policies>
+            <TimeBasedTriggeringPolicy interval="24" modulate="false"/>
             </Policies>
-           --> 
+           <DefaultRolloverStrategy max="14"/> 
+          </RollingFile>
+          
+            <!--  <Policies>
+                <SizeBasedTriggeringPolicy size="1 GB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/> -->
            
-           <Policies>
+       <!--     <Policies>
         <OnStartupTriggeringPolicy />
         <TimeBasedTriggeringPolicy />
-    </Policies>
+    </Policies> -->
             
-        </RollingFile>
+       <!--  </RollingFile> -->
         
     </Appenders>
 
@@ -38,7 +40,7 @@
         <Logger name="org.springframework" level="ERROR"/>
        
         <Logger name="org.apache.commons" level="ERROR"/>
-        <Logger name="org.sample" level="DEBUG" >
+        <Logger name="EventLogger" level="INFO" >
        		 <appender-ref ref="AuthEventAppender"/> 
         </Logger>
         <Logger name="com.couchbase.client" level="ERROR" />

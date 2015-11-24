@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.sample.exception.MyException;
 import org.sample.service.AccessValidator;
-import org.sample.service.EventLogService;
+import org.sample.util.EventLogger;
 import org.sample.vo.AccessRequest;
 import org.sample.vo.Channel;
 import org.slf4j.Logger;
@@ -24,16 +24,15 @@ public class AccessController {
 	@Autowired
 	private AccessValidator accessValidator;
 	
-	//@Autowired
-	private EventLogService eventLogger;
-	
+
 	private static final Logger Logger = LoggerFactory.getLogger(AccessController.class);
-	
+	private static final Logger fileLogger = LoggerFactory.getLogger("EventLogger");// EventLogger.getLogger();
 	
 	@RequestMapping(value="/access",method = RequestMethod.POST)
 	public String authorizeAccess(@RequestBody AccessRequest request){
 		
 		Logger.info("Access Request :: "+request);
+		fileLogger.info(request.toString()+"\n"); 
 		
 		if(request.getAge() == 99){
 			throw new MyException("Access request age ", "Age is 99");
@@ -42,6 +41,7 @@ public class AccessController {
 		
 		Logger.info("Log the request ");
 		//eventLogger.logEvent(request);
+		testLog();
 		
 		if(accessValidator.validateAccess(request))
 			return "Young";
@@ -74,5 +74,9 @@ public class AccessController {
 		
 		return new ResponseEntity<AccessRequest>(req,HttpStatus.OK);
 		
+	}
+	
+	private void testLog(){
+		fileLogger.info("testLogMethod\n");
 	}
 }
