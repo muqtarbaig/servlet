@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration >
+<Configuration ><!-- status = "debug" -->
     <Properties>
         <Property name="log-path">D:/project/servlet/src/main/webapp/config/logs</Property>
+        <property name="archive-path">Y:/logs/muqtar</property>
         <property name="host-name">${hostName}</property>
     </Properties> 
-
+	
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{ABSOLUTE} [%t] %-5p %c{1} - %m%n"/>
         </Console>
  
-        <!-- yymmddhh MM-dd-yyyy-HH-mm -->
-        <RollingFile name="AuthEventAppender" fileName="${log-path}/auth_request.log" filePattern="${log-path}/${host-name}~table_name~.%d{yyMMddHHmmss}">
+        <!-- yymmddhh MM-dd-yyyy-HH-mm   
+        ${log-path}/${host-name}~table_name~.%d{yyMMddHH}  
+         ${log-path}/myexample-%d{yyyy-MM-dd}-%i.log
+          ${log-path}/auth_request-%d{yyyy-MM-dd-HH-mm-ss}-%i.log-->
+          
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}-%d{yyyy-MM-dd-HH-mm-ss}.log.zip">
         	<PatternLayout>
                 <Pattern>%m:;:</Pattern>
         	</PatternLayout>
             <Policies>
-            <TimeBasedTriggeringPolicy interval="24" modulate="false"/>
+           <!--  <TimeBasedTriggeringPolicy interval="180" modulate="true"/>  -->
+            <SizeBasedTriggeringPolicy size="10 KB" />
             </Policies>
-           <DefaultRolloverStrategy max="14"/> 
+           <DefaultRolloverStrategy max="3" compressionLevel="9"/> 
           </RollingFile>
           
             <!--  <Policies>

@@ -34,11 +34,14 @@ public class DateScheduler implements SchedulingConfigurer{
 				
 				String date = new Date().toString();
 				LOGGER.info("Date is "+date);
-				fileLogger.info("LogValue 1 :: This text would increase the size of the file significantly and that"
-						+ " is what we need to as well !!$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$$$$$$$$$@@@@@@@@@@@@@");
 				
-				fileLogger.info("Log value 2 ###########################################################"
-						+ " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ END");
+				for(int i=0; i<25; i++){
+//				fileLogger.info("LogValue 1 :: This text would increase the size of the file significantly and that"
+//						+ " is what we need to as well !!$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$$$$$$$$$@@@@@@@@@@@@@");
+//				
+//				fileLogger.info("Log value 2 ###########################################################"
+//						+ " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ END");
+				}
 				if(date.contains(":01")){
 					throw new MyException("Date invalid error", "This is not the right time ??");
 				}
