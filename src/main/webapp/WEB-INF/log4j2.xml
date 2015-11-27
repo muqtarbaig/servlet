@@ -21,8 +21,8 @@
                 <Pattern>%m:;:</Pattern>
         	</PatternLayout>
             <Policies>
-           <!--  <TimeBasedTriggeringPolicy interval="180" modulate="true"/>  -->
-            <SizeBasedTriggeringPolicy size="10 KB" />
+            <TimeBasedTriggeringPolicy interval="15" modulate="true"/> 
+           <!--  <SizeBasedTriggeringPolicy size="10 KB" /> -->
             </Policies>
            <DefaultRolloverStrategy max="3" compressionLevel="9"/> 
           </RollingFile>

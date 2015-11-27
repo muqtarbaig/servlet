@@ -34,7 +34,7 @@ public class DateScheduler implements SchedulingConfigurer{
 				
 				String date = new Date().toString();
 				LOGGER.info("Date is "+date);
-				
+				fileLogger.info("LogData");
 				for(int i=0; i<25; i++){
 //				fileLogger.info("LogValue 1 :: This text would increase the size of the file significantly and that"
 //						+ " is what we need to as well !!$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$$$$$$$$$@@@@@@@@@@@@@");
