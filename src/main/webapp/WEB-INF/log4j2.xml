@@ -16,15 +16,15 @@
          ${log-path}/myexample-%d{yyyy-MM-dd}-%i.log
           ${log-path}/auth_request-%d{yyyy-MM-dd-HH-mm-ss}-%i.log-->
           
-        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}-%d{yyyy-MM-dd-HH-mm-ss}.log.zip">
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}~PGAUTH-DRMS~.%d{yyMMddHH}.log.zip">
         	<PatternLayout>
                 <Pattern>%m:;:</Pattern>
         	</PatternLayout>
             <Policies>
-            <TimeBasedTriggeringPolicy interval="15" modulate="true"/> 
+            <TimeBasedTriggeringPolicy interval="24" modulate="false"/> 
            <!--  <SizeBasedTriggeringPolicy size="10 KB" /> -->
             </Policies>
-           <DefaultRolloverStrategy max="3" compressionLevel="9"/> 
+           <DefaultRolloverStrategy compressionLevel="9"/> 
           </RollingFile>
           
             <!--  <Policies>
@@ -52,7 +52,7 @@
         <Logger name="com.couchbase.client" level="ERROR" />
         <Logger name="org.apache.http" level="ERROR" />
         
-        <AsyncRoot level="info" includeLocation="true">
+        <AsyncRoot level="debug" includeLocation="true">
             <!-- <AppenderRef ref="AuthEventAppender"/>  -->
             <AppenderRef ref="ConsoleAppender"/>
         </AsyncRoot>

@@ -70,6 +70,8 @@ dependencies{
 	//sound api
 	compile 'com.googlecode.soundlibs:tritonus-share:0.3.7-2'
 	
+	//joda
+	compile "joda-time:joda-time:2.7"
 	
 	def tomcatVersion = '7.0.59'
 	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",

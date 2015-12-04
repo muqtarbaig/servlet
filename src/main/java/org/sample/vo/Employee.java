@@ -10,7 +10,7 @@ public class Employee {
 	 //@XmlElement
 	private String name;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -23,5 +23,13 @@ public class Employee {
 		this.name = name;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return this.id == ((Employee)obj).getId();
+	}
 	
+	@Override
+	public int hashCode() {
+		return 100+this.id;
+	}
 }
