@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
-@Component
+//@Component
 public class DateScheduler implements SchedulingConfigurer{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DateScheduler.class); 

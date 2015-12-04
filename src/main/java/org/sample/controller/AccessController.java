@@ -8,6 +8,7 @@ import org.sample.service.AccessValidator;
 import org.sample.util.EventLogger;
 import org.sample.vo.AccessRequest;
 import org.sample.vo.Channel;
+import org.sample.vo.RandomQuote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class AccessController {
@@ -24,7 +26,9 @@ public class AccessController {
 	@Autowired
 	private AccessValidator accessValidator;
 	
-
+//	@Autowired
+//	private RestTemplate restTemplate;
+	
 	private static final Logger Logger = LoggerFactory.getLogger(AccessController.class);
 	private static final Logger fileLogger = LoggerFactory.getLogger("EventLogger");// EventLogger.getLogger();
 	
@@ -34,6 +38,11 @@ public class AccessController {
 		Logger.info("Access Request :: "+request);
 		fileLogger.info(request.toString()+"\n"); 
 		
+		if(request.getName().toLowerCase().contains("muqtar")){
+			RestTemplate restTemplate = new RestTemplate();
+			RandomQuote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", RandomQuote.class);
+			Logger.info(quote.toString());
+		}
 		if(request.getAge() == 99){
 			throw new MyException("Access request age ", "Age is 99");
 		}
