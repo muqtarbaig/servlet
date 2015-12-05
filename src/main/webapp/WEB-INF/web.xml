@@ -14,7 +14,7 @@
 		
 		<context-param>
 			<param-name>log4jConfiguration</param-name>
-			<param-value>file:D:\project\servlet\src\main\webapp\WEB-INF/log4j2.xml</param-value>
+			<param-value>/WEB-INF/log4j2.xml</param-value>
 		</context-param>
 		
 	<listener><listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class></listener> 

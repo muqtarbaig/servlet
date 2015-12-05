@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 public class ArchiveScheduler implements SchedulingConfigurer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("");
+	private static final Logger FILE_LG = LoggerFactory.getLogger("EventLogger");
 	private File logPath = new File(""); 
 	private final int thresholdDuration = 14;
 	private String fileNamePattern = "eula";
@@ -56,6 +57,7 @@ public class ArchiveScheduler implements SchedulingConfigurer {
 
 		taskRegistrar.addCronTask(()->{
 			LOGGER.info("Archiving every minute " + new Date().toString());
+			FILE_LG.info("LogField");
 
 			//jarchive();
 

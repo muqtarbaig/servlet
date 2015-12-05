@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration ><!-- status = "debug" -->
+<Configuration status  = "debug" ><!-- status = "debug" -->
     <Properties>
-        <Property name="log-path">D:/project/servlet/src/main/webapp/config/logs</Property>
-        <property name="archive-path">Y:/logs/muqtar</property>
+        <Property name="log-path">${web:contextPath}/logs</Property>
+        <property name="archive-path">${web:contextPath}/logs</property>
         <property name="host-name">${hostName}</property>
     </Properties> 
 	
@@ -16,12 +16,12 @@
          ${log-path}/myexample-%d{yyyy-MM-dd}-%i.log
           ${log-path}/auth_request-%d{yyyy-MM-dd-HH-mm-ss}-%i.log-->
           
-        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}~PGAUTH-DRMS~.%d{yyMMddHH}.log.zip">
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}~PGAUTH-DRMS~.%d{yyMMddHHmm}.log.zip">
         	<PatternLayout>
                 <Pattern>%m:;:</Pattern>
         	</PatternLayout>
             <Policies>
-            <TimeBasedTriggeringPolicy interval="24" modulate="false"/> 
+            <TimeBasedTriggeringPolicy interval="1" modulate="false"/> 
            <!--  <SizeBasedTriggeringPolicy size="10 KB" /> -->
             </Policies>
            <DefaultRolloverStrategy compressionLevel="9"/> 
