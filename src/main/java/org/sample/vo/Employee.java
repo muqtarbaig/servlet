@@ -25,7 +25,9 @@ public class Employee {
 	
 	@Override
 	public boolean equals(Object obj) {
+		if(obj!=null)
 		return this.id == ((Employee)obj).getId();
+		return false;
 	}
 	
 	@Override

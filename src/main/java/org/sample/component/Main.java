@@ -55,12 +55,14 @@ public class Main {
 	}
 
 	static void nullCheck(){
-		File file = new File("D:\\del");
-		List<File> files = Arrays.asList(file.listFiles());
-		System.out.println("Files "+files);
-		for(File f : files){
-			System.out.println("Each "+f);
+		File file = new File("D:\\Ddel");
+		File[] listOfFiles = file.listFiles();
+		if(listOfFiles!=null){
+			List<File> files = Arrays.asList(listOfFiles);
+			System.out.println("Files "+files);
+			for(File f : files){
+				System.out.println("Each "+f);
+			}
 		}
-		
 	}
 }

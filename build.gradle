@@ -69,6 +69,9 @@ dependencies{
 	
 	//sound api
 	compile 'com.googlecode.soundlibs:tritonus-share:0.3.7-2'
+	compile 'javax.media:jmf:2.1.1e'
+	compile fileTree(dir: 'lib', include: '*.jar')
+	
 	
 	//joda
 	compile "joda-time:joda-time:2.7"
