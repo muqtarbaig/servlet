@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RestController
 public class AccessController {
@@ -34,6 +36,9 @@ public class AccessController {
 	
 	@RequestMapping(value="/access",method = RequestMethod.POST)
 	public String authorizeAccess(@RequestBody AccessRequest request){
+	
+		ServletRequestAttributes servletRequest = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+		Logger.info("Session id "+servletRequest.getSessionId());
 		
 		Logger.info("Access Request :: "+request);
 		fileLogger.info(request.toString()+"\n"); 
