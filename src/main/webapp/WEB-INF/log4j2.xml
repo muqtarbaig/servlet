@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status  = "debug" ><!-- status = "debug" -->
+<Configuration><!-- status = "debug" -->
     <Properties>
         <Property name="log-path">${web:contextPath}/logs</Property>
         <property name="archive-path">${web:contextPath}/logs</property>
