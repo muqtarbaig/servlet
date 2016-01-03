@@ -1,0 +1,7 @@
+<playmanifest xmlns:abc="api.abc.com/pmanifest">
+<channels xmlns:cha="cha.abc.com">
+<channel id="c1">
+<systemId>abcdefxyz</systemId>
+</channel>
+</channels>
+</playmanifest>
