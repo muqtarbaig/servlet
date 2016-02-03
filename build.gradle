@@ -18,7 +18,7 @@ buildscript {
 }
 
 ext {
-	log4j2Version = "2.0.2"
+	log4j2Version = "2.5"
 }
 
 repositories{

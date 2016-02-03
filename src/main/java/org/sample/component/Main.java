@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Vector;
 
 import org.sample.vo.Employee;
 
@@ -17,8 +19,15 @@ public class Main {
 	public static void main(String[] args) {
 	
 		//collectionr();
-		nullCheck();
-		
+		//nullCheck();
+		sample();
+	}
+	
+	static private void sample(){
+		String a = "abc";
+		String b = new String("abc");
+		System.out.println(a.equals(b));
+		System.out.println(a==b);
 	}
 	
 	static void collectionr(){

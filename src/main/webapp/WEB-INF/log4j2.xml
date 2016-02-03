@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration><!-- status = "debug" -->
+<Configuration status = "debug"><!-- status = "debug" -->
     <Properties>
-        <Property name="log-path">${web:contextPath}/logs</Property>
-        <property name="archive-path">${web:contextPath}/logs</property>
+        <Property name="log-path">D:/sampleserv/logs</Property>
+        <property name="archive-path">D:/sampleserv/logs/archive</property>
         <property name="host-name">${hostName}</property>
     </Properties> 
 	
@@ -16,15 +16,22 @@
          ${log-path}/myexample-%d{yyyy-MM-dd}-%i.log
           ${log-path}/auth_request-%d{yyyy-MM-dd-HH-mm-ss}-%i.log-->
           
-        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${host-name}~PGAUTH-DRMS~.%d{yyMMddHHmm}.log.zip">
+        <RollingFile name="AuthEventAppender" fileName="${log-path}/myexample.log" filePattern="${archive-path}/${hostName}~PGAUTH-DRMS~.%d{yyMMddHHmm}.log.zip">
         	<PatternLayout>
                 <Pattern>%m:;:</Pattern>
         	</PatternLayout>
             <Policies>
-            <TimeBasedTriggeringPolicy interval="1" modulate="false"/> 
-           <!--  <SizeBasedTriggeringPolicy size="10 KB" /> -->
+            <TimeBasedTriggeringPolicy interval="2" modulate="true"/> 
+           <!--  <SizeBasedTriggeringPolicy size="10 KB" />
+            <CronTriggeringPolicy schedule="0/30 0 * 1/1 * ? *"/> -->
             </Policies>
-           <DefaultRolloverStrategy compressionLevel="9"/> 
+           <!--  <CronTriggeringPolicy schedule="0 0/1 * 1/1 * ? *"/> -->
+           <DefaultRolloverStrategy compressionLevel="9">
+             <Delete basePath="${archive-path}" >
+         	  <IfFileName glob="*~PGAUTH-DRMS*.log.zip"/>
+            <IfLastModified age="5m"/>
+         		 </Delete>
+       	 </DefaultRolloverStrategy> 
           </RollingFile>
           
             <!--  <Policies>

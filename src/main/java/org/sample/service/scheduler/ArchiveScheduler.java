@@ -56,7 +56,8 @@ public class ArchiveScheduler implements SchedulingConfigurer {
 	public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
 
 		taskRegistrar.addCronTask(()->{
-			LOGGER.info("Archiving every minute " + new Date().toString());
+			//LOGGER.info("Archiving every minute " + new Date().toString());
+			LOGGER.info("Archive disabled only creating sample logs");
 			FILE_LG.info("LogField");
 
 			//jarchive();
