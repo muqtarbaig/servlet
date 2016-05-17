@@ -6,7 +6,7 @@ public class AbstractMain {
 	public static void main(String[] args) {
 //		new AbstractImpl().nonAbstract();
 		
-		String text = " hello  world \\sthis";
-		System.out.println(text.trim());
+		String text = " hello  world     this";
+		System.out.println(text.replaceAll("\\s+", " "));
 	}
 }
