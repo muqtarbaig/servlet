@@ -88,6 +88,11 @@ dependencies{
 	//h2
 	compile 'com.h2database:h2:1.4.190'
 	
+	//collections
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	//gson
+	compile "com.google.code.gson:gson:2.+"
+	
 	def tomcatVersion = '7.0.59'
 	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
 		   "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",

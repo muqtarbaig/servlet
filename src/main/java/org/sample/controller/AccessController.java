@@ -1,19 +1,23 @@
 package org.sample.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.sample.exception.MyException;
 import org.sample.service.AccessValidator;
-import org.sample.util.EventLogger;
 import org.sample.vo.AccessRequest;
 import org.sample.vo.Channel;
 import org.sample.vo.RandomQuote;
+import org.sample.vo.ActionParam;
+import org.sample.vo.SDEligibilityRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.google.gson.Gson;
+
 
 @RestController
 public class AccessController {
@@ -90,7 +97,39 @@ public class AccessController {
 		
 	}
 	
+	
+	@RequestMapping(name = "/eligibility", method = RequestMethod.GET)
+	public ResponseEntity<String> checkEligibilty(@ModelAttribute SDEligibilityRequest request){
+		Logger.info("Eligibility request {}",request);
+		return null;
+	}
+	
 	private void testLog(){
 		fileLogger.info("testLogMethod\n");
+	}
+	
+	public static void main(String[] args) {
+		ActionParam param = new ActionParam();
+		param.setEt("eToken123");
+		param.setSid("siteId123");
+		param.setSig("signature123");
+		
+		Set<ActionParam> params = new HashSet<ActionParam>();
+		params.add(param);
+		
+		Set<String> actions = new HashSet<String>();
+		actions.add("vodads");
+		actions.add("nonce");
+		
+		SDEligibilityRequest request = new SDEligibilityRequest();
+		request.setParams(params);
+		request.setActions(actions);
+		
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(request);
+		System.out.println(json);
+		
+		
 	}
 }

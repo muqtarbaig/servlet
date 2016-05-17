@@ -16,7 +16,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ArchiveScheduler implements SchedulingConfigurer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("");
