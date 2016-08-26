@@ -1,5 +1,8 @@
 package org.sample.service;
 
+import org.springframework.stereotype.Component;
+
+@Component("ageValid")
 public class AgeValidatorImpl implements AgeValidator {
 
 	@Override

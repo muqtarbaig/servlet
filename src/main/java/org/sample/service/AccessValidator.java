@@ -14,7 +14,9 @@ public class AccessValidator {
 
 	//@Autowired
 	//@Qualifier(value = "validator")
-	@Resource(name = "validator")
+//	@Resource(name = "validator")
+	@Autowired
+	@Qualifier("ageValid")
 	private AgeValidator ageValidator;
 	
 	@Autowired
