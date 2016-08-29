@@ -1,4 +1,4 @@
-package org.sample.example.h2;
+package org.sample.hibernate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

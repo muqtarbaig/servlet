@@ -6,12 +6,12 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.hibernate.engine.spi.SessionImplementor;
-import org.sample.example.h2.Employee;
+import org.sample.hibernate.Employee;
+import org.sample.hibernate.EmployeeDao;
+import org.sample.hibernate.IEmployeeDao;
 import org.sample.service.AgeValidator;
 import org.sample.service.AgeValidatorImpl;
 import org.sample.service.EmailMessage;
-import org.sample.service.FileValidator;
 import org.sample.service.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +22,9 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -37,6 +34,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "org.sample")
 @EnableScheduling
+@EnableTransactionManagement
 public class RootConfig {
 
 	
@@ -70,13 +68,18 @@ public class RootConfig {
 		 return new CommonsMultipartResolver();
 	 }
 	 
+	 @Bean
+	 public  IEmployeeDao employeeDao() {
+		 return new EmployeeDao();
+	 }
+	 
 	 // Hibernate datasource
 	 @Bean
 	 public DataSource getDataSource(){
 		 BasicDataSource dataSource = new BasicDataSource();
-		 dataSource.setDriverClassName("org.h2.Driver");
-		 dataSource.setUrl("jdbc:h2:mem:test");
-		 dataSource.setUsername("sa");
+		 dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		 dataSource.setUrl("jdbc:mysql://localhost:3306/test");
+		 dataSource.setUsername("root");
 		 dataSource.setPassword("");
 		 return dataSource;
 	 }
@@ -85,16 +88,9 @@ public class RootConfig {
 	 @Bean
 	 @DependsOn("getDataSource")
 	 public SessionFactory sessionFactory() throws SQLException{
-		 LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(getDataSource());
-		 sessionFactoryBuilder.addAnnotatedClasses(Employee.class);
-		 SessionFactory factory = sessionFactoryBuilder.buildSessionFactory();
-			/*String db = ((SessionImplementor)factory).getJdbcConnectionAccess().obtainConnection()
-				       .getMetaData().getDatabaseProductName();
-					 LOGGER.info("sessionFactory detal "+db);*/
-		 return factory;
-		/* return new LocalSessionFactoryBuilder(getDataSource())
-		   .addAnnotatedClasses(Employee.class)
-		   .buildSessionFactory();*/
+		return new LocalSessionFactoryBuilder(getDataSource()).
+		 addAnnotatedClasses(Employee.class).buildSessionFactory();
+
 		 
 	 }
 	 
@@ -103,8 +99,6 @@ public class RootConfig {
 	 @DependsOn("sessionFactory")
 	 public HibernateTemplate hibernateTemplate() throws SQLException{
 		 HibernateTemplate template = new HibernateTemplate(sessionFactory());
-		/*String db = ((SessionImplementor) template.getSessionFactory()).getJdbcConnectionAccess().obtainConnection()
-	       .getMetaData().getDatabaseProductName();*/
 		 LOGGER.info("Template detal "+template.getSessionFactory().getStatistics());
 		 return template;
 	 }

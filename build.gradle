@@ -89,7 +89,7 @@ dependencies{
 	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
 //	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
 	compile  'org.hibernate:hibernate-core:4.3.6.Final'
-	
+	compile 'org.javassist:javassist:3.15.0-GA'
 	//dhcp
 	compile 'commons-dbcp:commons-dbcp:1.4'
 	//h2
