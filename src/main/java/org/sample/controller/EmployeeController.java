@@ -22,8 +22,8 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee/get/{eid}") // http://localhost:9090/sampleserv/employee/get/1
-	public String getEmpn(@PathVariable("eid") int id){
-		return dao.getEmployee(id).toString();
+	public Employee getEmpn(@PathVariable("eid") int id){
+		return dao.getEmployee(id);
 	}
 	
 	@RequestMapping(value = "/employee/add", method = RequestMethod.POST) // http://localhost:9090/sampleserv/employee/add?id=8&name=Hasheem&deptid=2

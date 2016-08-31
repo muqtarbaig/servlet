@@ -90,18 +90,16 @@ public class RootConfig {
 	 public SessionFactory sessionFactory() throws SQLException{
 		return new LocalSessionFactoryBuilder(getDataSource()).
 		 addAnnotatedClasses(Employee.class).buildSessionFactory();
-
-		 
 	 }
 	 
-	 // Hibernate template
+/*	 // Hibernate template
 	 @Bean
 	 @DependsOn("sessionFactory")
 	 public HibernateTemplate hibernateTemplate() throws SQLException{
 		 HibernateTemplate template = new HibernateTemplate(sessionFactory());
 		 LOGGER.info("Template detal "+template.getSessionFactory().getStatistics());
 		 return template;
-	 }
+	 }*/
 	 
 	 @Bean
 		public HibernateTransactionManager hibTransMan() throws SQLException{
